@@ -42,7 +42,8 @@ int analogRead(uint8_t pin)
 
 #if defined(analogPinToChannel)
   pin = analogPinToChannel(pin);
-  
+#endif
+
   // allow for channel or pin numbers
   #if defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__) || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2561__)
     if (pin >= 45) pin -= 45;
