@@ -58,7 +58,6 @@ static volatile voidFuncPtr intFunc[EXTERNAL_NUM_INTERRUPTS] =
     nothing,
   #endif
 };
-// volatile static voidFuncPtr twiIntFunc;
 
 void attachInterrupt(uint8_t interruptNum, void (*userFunc)(void), int mode) 
 {
@@ -74,8 +73,8 @@ void attachInterrupt(uint8_t interruptNum, void (*userFunc)(void), int mode)
     // Enable interrupt        
     switch(interruptNum) 
     {
-      // ATmega64, ATmega128, ATmega640, ATmega1280, ATmega1281, ATmega2560, ATmega2561        
-      #if defined(EICRA) && defined(EICRB) && defined(EIMSK)
+      // Default pinout for the ATmega64/128/1281/2561
+      #if defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__) || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2561__)    
         case 0:
           EICRA = (EICRA & ~((1 << ISC00) | (1 << ISC01))) | (mode << ISC00);
           EIMSK |= (1 << INT0);
@@ -108,6 +107,76 @@ void attachInterrupt(uint8_t interruptNum, void (*userFunc)(void), int mode)
           EICRB = (EICRB & ~((1 << ISC70) | (1 << ISC71))) | (mode << ISC70);
           EIMSK |= (1 << INT7);
           break;
+    
+      // Arduino MEGA compatible pinout for the ATmega640/1280/2560
+      #elif defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_PINOUT)
+        case 2:
+          EICRA = (EICRA & ~((1 << ISC00) | (1 << ISC01))) | (mode << ISC00);
+          EIMSK |= (1 << INT0);
+          break;
+        case 3:
+          EICRA = (EICRA & ~((1 << ISC10) | (1 << ISC11))) | (mode << ISC10);
+          EIMSK |= (1 << INT1);
+          break;
+        case 4:
+          EICRA = (EICRA & ~((1 << ISC20) | (1 << ISC21))) | (mode << ISC20);
+          EIMSK |= (1 << INT2);
+          break;
+        case 5:
+          EICRA = (EICRA & ~((1 << ISC30) | (1 << ISC31))) | (mode << ISC30);
+          EIMSK |= (1 << INT3);
+          break;
+        case 0:
+          EICRB = (EICRB & ~((1 << ISC40) | (1 << ISC41))) | (mode << ISC40);
+          EIMSK |= (1 << INT4);
+          break;
+        case 1:
+          EICRB = (EICRB & ~((1 << ISC50) | (1 << ISC51))) | (mode << ISC50);
+          EIMSK |= (1 << INT5);
+          break;
+        case 6:
+          EICRB = (EICRB & ~((1 << ISC60) | (1 << ISC61))) | (mode << ISC60);
+          EIMSK |= (1 << INT6);
+          break;
+        case 7:
+          EICRB = (EICRB & ~((1 << ISC70) | (1 << ISC71))) | (mode << ISC70);
+          EIMSK |= (1 << INT7);
+          break;      
+          
+      // "AVR compatible" pinout for the ATmega640/1280/2560
+      #elif defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_AVR_PINOUT)   
+        case 0:
+          EICRA = (EICRA & ~((1 << ISC00) | (1 << ISC01))) | (mode << ISC00);
+          EIMSK |= (1 << INT0);
+          break;
+        case 1:
+          EICRA = (EICRA & ~((1 << ISC10) | (1 << ISC11))) | (mode << ISC10);
+          EIMSK |= (1 << INT1);
+          break;
+        case 2:
+          EICRA = (EICRA & ~((1 << ISC20) | (1 << ISC21))) | (mode << ISC20);
+          EIMSK |= (1 << INT2);
+          break;
+        case 3:
+          EICRA = (EICRA & ~((1 << ISC30) | (1 << ISC31))) | (mode << ISC30);
+          EIMSK |= (1 << INT3);
+          break;
+        case 4:
+          EICRB = (EICRB & ~((1 << ISC40) | (1 << ISC41))) | (mode << ISC40);
+          EIMSK |= (1 << INT4);
+          break;
+        case 5:
+          EICRB = (EICRB & ~((1 << ISC50) | (1 << ISC51))) | (mode << ISC50);
+          EIMSK |= (1 << INT5);
+          break;
+        case 6:
+          EICRB = (EICRB & ~((1 << ISC60) | (1 << ISC61))) | (mode << ISC60);
+          EIMSK |= (1 << INT6);
+          break;
+        case 7:
+          EICRB = (EICRB & ~((1 << ISC70) | (1 << ISC71))) | (mode << ISC70);
+          EIMSK |= (1 << INT7);
+          break;    
     #endif
     }
   }
@@ -120,8 +189,8 @@ void detachInterrupt(uint8_t interruptNum)
     // Disable interrupt
     switch(interruptNum) 
     {
-      // ATmega64, ATmega128, ATmega640, ATmega1280, ATmega1281, ATmega2560, ATmega2561        
-      #if defined(EICRA) && defined(EICRB) && defined(EIMSK)
+      // Default pinout for the ATmega64/128/1281/2561
+      #if defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__) || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2561__)
         case 0:
           EIMSK &= ~(1 << INT0);
           break;
@@ -145,25 +214,75 @@ void detachInterrupt(uint8_t interruptNum)
           break;
         case 7:
           EIMSK &= ~(1 << INT7);
-          break;      
+          break;
+          
+      // Arduino MEGA compatible pinout for the ATmega640/1280/2560
+      #elif defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_PINOUT)
+        case 2:
+          EIMSK &= ~(1 << INT0);
+          break;
+        case 3:
+          EIMSK &= ~(1 << INT1);
+          break;
+        case 4:
+          EIMSK &= ~(1 << INT2);
+          break;
+        case 5:
+          EIMSK &= ~(1 << INT3);
+          break;
+        case 0:
+          EIMSK &= ~(1 << INT4);
+          break;
+        case 1:
+          EIMSK &= ~(1 << INT5);
+          break;
+        case 6:
+          EIMSK &= ~(1 << INT6);
+          break;
+        case 7:
+          EIMSK &= ~(1 << INT7);
+          break; 
+          
+      // "AVR compatible" pinout for the ATmega640/1280/2560
+      #elif defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_AVR_PINOUT)
+        case 0:
+          EIMSK &= ~(1 << INT0);
+          break;
+        case 1:
+          EIMSK &= ~(1 << INT1);
+          break;
+        case 2:
+          EIMSK &= ~(1 << INT2);
+          break;
+        case 3:
+          EIMSK &= ~(1 << INT3);
+          break;
+        case 4:
+          EIMSK &= ~(1 << INT4);
+          break;
+        case 5:
+          EIMSK &= ~(1 << INT5);
+          break;
+        case 6:
+          EIMSK &= ~(1 << INT6);
+          break;
+        case 7:
+          EIMSK &= ~(1 << INT7);
+          break;             
       #endif
     }      
     intFunc[interruptNum] = nothing;
   }
 }
 
-/*
-void attachInterruptTwi(void (*userFunc)(void) ) {
-  twiIntFunc = userFunc;
-}
-*/
 
 #define IMPLEMENT_ISR(vect, interrupt) \
   ISR(vect) { \
     intFunc[interrupt](); \
   }
 
-#if defined(EICRA) && defined(EICRB)
+// Default pinout for the ATmega64/128/1281/2561
+#if defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__) || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2561__)
   IMPLEMENT_ISR(INT0_vect, EXTERNAL_INT_0)
   IMPLEMENT_ISR(INT1_vect, EXTERNAL_INT_1)
   IMPLEMENT_ISR(INT2_vect, EXTERNAL_INT_2)
@@ -172,10 +291,41 @@ void attachInterruptTwi(void (*userFunc)(void) ) {
   IMPLEMENT_ISR(INT5_vect, EXTERNAL_INT_5)
   IMPLEMENT_ISR(INT6_vect, EXTERNAL_INT_6)
   IMPLEMENT_ISR(INT7_vect, EXTERNAL_INT_7)
+
+// Arduino MEGA compatible pinout for the ATmega640/1280/2560
+#elif defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_PINOUT)
+  IMPLEMENT_ISR(INT0_vect, EXTERNAL_INT_2)
+  IMPLEMENT_ISR(INT1_vect, EXTERNAL_INT_3)
+  IMPLEMENT_ISR(INT2_vect, EXTERNAL_INT_4)
+  IMPLEMENT_ISR(INT3_vect, EXTERNAL_INT_5)
+  IMPLEMENT_ISR(INT4_vect, EXTERNAL_INT_0)
+  IMPLEMENT_ISR(INT5_vect, EXTERNAL_INT_1)
+  IMPLEMENT_ISR(INT6_vect, EXTERNAL_INT_6)
+  IMPLEMENT_ISR(INT7_vect, EXTERNAL_INT_7)
+  
+// "AVR compatible" pinout for the ATmega640/1280/2560
+#elif defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_AVR_PINOUT)
+  IMPLEMENT_ISR(INT0_vect, EXTERNAL_INT_0)
+  IMPLEMENT_ISR(INT1_vect, EXTERNAL_INT_1)
+  IMPLEMENT_ISR(INT2_vect, EXTERNAL_INT_2)
+  IMPLEMENT_ISR(INT3_vect, EXTERNAL_INT_3)
+  IMPLEMENT_ISR(INT4_vect, EXTERNAL_INT_5)
+  IMPLEMENT_ISR(INT5_vect, EXTERNAL_INT_5)
+  IMPLEMENT_ISR(INT6_vect, EXTERNAL_INT_6)
+  IMPLEMENT_ISR(INT7_vect, EXTERNAL_INT_7)  
 #endif
 
+
 /*
-ISR(TWI_vect) {
+volatile static voidFuncPtr twiIntFunc;
+
+void attachInterruptTwi(void (*userFunc)(void) ) 
+{
+  twiIntFunc = userFunc;
+}
+
+ISR(TWI_vect) 
+{
   if(twiIntFunc)
     twiIntFunc();
 }
