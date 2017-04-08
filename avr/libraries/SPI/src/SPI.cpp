@@ -80,14 +80,8 @@ void SPIClass::end() {
   SREG = sreg;
 }
 
-// mapping of interrupt numbers to bits within SPI_AVR_EIMSK
-#if defined(__AVR_ATmega32U4__)
-  #define SPI_INT0_MASK  (1<<INT0)
-  #define SPI_INT1_MASK  (1<<INT1)
-  #define SPI_INT2_MASK  (1<<INT2)
-  #define SPI_INT3_MASK  (1<<INT3)
-  #define SPI_INT4_MASK  (1<<INT6)
-#elif defined(__AVR_AT90USB646__) || defined(__AVR_AT90USB1286__)
+// Default interrupt mapping for the ATmega64/128/1281/2561
+#if defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__) || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2561__)
   #define SPI_INT0_MASK  (1<<INT0)
   #define SPI_INT1_MASK  (1<<INT1)
   #define SPI_INT2_MASK  (1<<INT2)
@@ -96,7 +90,9 @@ void SPIClass::end() {
   #define SPI_INT5_MASK  (1<<INT5)
   #define SPI_INT6_MASK  (1<<INT6)
   #define SPI_INT7_MASK  (1<<INT7)
-#elif defined(EICRA) && defined(EICRB) && defined(EIMSK)
+
+// Arduino MEGA compatible interrupt mapping for the ATmega640/1280/2560
+#elif defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_PINOUT)
   #define SPI_INT0_MASK  (1<<INT4)
   #define SPI_INT1_MASK  (1<<INT5)
   #define SPI_INT2_MASK  (1<<INT0)
@@ -105,17 +101,19 @@ void SPIClass::end() {
   #define SPI_INT5_MASK  (1<<INT3)
   #define SPI_INT6_MASK  (1<<INT6)
   #define SPI_INT7_MASK  (1<<INT7)
-#else
-  #ifdef INT0
+  
+// "AVR compatible" interrupt mapping for the ATmega640/1280/2560
+#elif defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_AVR_PINOUT)
   #define SPI_INT0_MASK  (1<<INT0)
-  #endif
-  #ifdef INT1
   #define SPI_INT1_MASK  (1<<INT1)
-  #endif
-  #ifdef INT2
   #define SPI_INT2_MASK  (1<<INT2)
-  #endif
+  #define SPI_INT3_MASK  (1<<INT3)
+  #define SPI_INT4_MASK  (1<<INT4)
+  #define SPI_INT5_MASK  (1<<INT5)
+  #define SPI_INT6_MASK  (1<<INT6)
+  #define SPI_INT7_MASK  (1<<INT7)
 #endif
+
 
 void SPIClass::usingInterrupt(uint8_t interruptNumber)
 {
