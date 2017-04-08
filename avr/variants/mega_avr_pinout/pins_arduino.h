@@ -9,6 +9,10 @@
   working directly with the microcontroller itself, not the actual
   Arduino MEGA board. For this purpose, the pinout is cleaner, more
   straight forward and more logical than the MEGA pinout.
+  
+  For a visual representation on the pinout, have a look at the
+  MegaCore AVR pinout in the README
+  https://github.com/MCUdude/MegaCore#pinout
 */
  
 #ifndef Pins_Arduino_h
@@ -338,35 +342,35 @@ const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
   NOT_ON_TIMER  , // PE 0 ** 0 ** RXD0
   NOT_ON_TIMER  , // PE 1 ** 1 ** TXD0
   NOT_ON_TIMER  , // PE 2 ** 2
-  TIMER3A  , // PE 3 ** 3
-  TIMER3B  , // PE 4 ** 4
-  TIMER3C  , // PE 5 ** 5
+  TIMER3A  ,      // PE 3 ** 3
+  TIMER3B  ,      // PE 4 ** 4
+  TIMER3C  ,      // PE 5 ** 5
   NOT_ON_TIMER  , // PE 6 ** 6
   NOT_ON_TIMER  , // PE 7 ** 7
   NOT_ON_TIMER  , // PH 0 ** 8 ** RXD2
   NOT_ON_TIMER  , // PH 1 ** 9 ** TXD2
   NOT_ON_TIMER  , // PH 2 ** 10
-  TIMER4A  , // PH 3 ** 11
-  TIMER4B  , // PH 4 ** 12
-  TIMER4C  , // PH 5 ** 13
-  TIMER2B  , // PH 6 ** 14
+  TIMER4A  ,      // PH 3 ** 11
+  TIMER4B  ,      // PH 4 ** 12
+  TIMER4C  ,      // PH 5 ** 13
+  TIMER2B  ,      // PH 6 ** 14
   NOT_ON_TIMER  , // PB 0 ** 15 ** SS
   NOT_ON_TIMER  , // PB 1 ** 16 ** SCK
   NOT_ON_TIMER  , // PB 2 ** 17 ** MOSI
   NOT_ON_TIMER  , // PB 3 ** 18 ** MISO
-  TIMER2A  , // PB 4 ** 19
-  TIMER1A  , // PB 5 ** 20
-  TIMER1B  , // PB 6 ** 21
-  TIMER1C  , // PB 7 ** 22
+  TIMER2A  ,      // PB 4 ** 19
+  TIMER1A  ,      // PB 5 ** 20
+  TIMER1B  ,      // PB 6 ** 21
+  TIMER1C  ,      // PB 7 ** 22
   NOT_ON_TIMER  , // PH 7 ** 23
   NOT_ON_TIMER  , // PG 3 ** 24
   NOT_ON_TIMER  , // PG 4 ** 25
   NOT_ON_TIMER  , // PL 0 ** 26
   NOT_ON_TIMER  , // PL 1 ** 27
   NOT_ON_TIMER  , // PL 2 ** 28
-  TIMER5A  , // PL 3 ** 29
-  TIMER5B  , // PL 4 ** 30
-  TIMER5C  , // PL 5 ** 31
+  TIMER5A  ,      // PL 3 ** 29
+  TIMER5B  ,      // PL 4 ** 30
+  TIMER5C  ,      // PL 5 ** 31
   NOT_ON_TIMER  , // PL 6 ** 32
   NOT_ON_TIMER  , // PL 7 ** 33
   NOT_ON_TIMER  , // PD 0 ** 34 ** SCL
@@ -420,7 +424,7 @@ const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
   NOT_ON_TIMER  , // PK 5 ** 82 ** A13
   NOT_ON_TIMER  , // PK 6 ** 83 ** A14
   NOT_ON_TIMER  , // PK 7 ** 84 ** A15
-  TIMER0B  , // PG 5 ** 85
+  TIMER0B  ,      // PG 5 ** 85
 };
 
 #endif
