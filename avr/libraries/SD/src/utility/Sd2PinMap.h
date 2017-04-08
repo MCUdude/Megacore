@@ -46,10 +46,9 @@ struct pin_map_t {
   volatile uint8_t* port;
   uint8_t bit;
 };
-//------------------------------------------------------------------------------
-//MegaCore
-#if defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__) \
- || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2561__) 
+
+//Pin definitions for ATmega64/128/1281/2561
+#if defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__) || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2561__) 
 
 
 // Two Wire (aka I2C) ports
@@ -116,8 +115,212 @@ static const pin_map_t digitalPinMap[] = {
   {&DDRF, &PINF, &PORTF, 5},  // F5  50
   {&DDRF, &PINF, &PORTF, 6},  // F6  51
   {&DDRF, &PINF, &PORTF, 7}   // F7  52
-  
 };
+
+//Arduino MEGA compatible pin definitions for ATmega640/1280/2560
+#elif defined(__AVR_ATmega640__) ||defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_PINOUT)
+
+// Two Wire (aka I2C) ports
+uint8_t const SDA_PIN = 20;
+uint8_t const SCL_PIN = 21;
+
+// SPI port
+uint8_t const SS_PIN = 53;
+uint8_t const MOSI_PIN = 51;
+uint8_t const MISO_PIN = 50;
+uint8_t const SCK_PIN = 52;
+
+static const pin_map_t digitalPinMap[] = {
+  {&DDRE, &PINE, &PORTE, 0},  // E0  0
+  {&DDRE, &PINE, &PORTE, 1},  // E1  1
+  {&DDRE, &PINE, &PORTE, 4},  // E4  2
+  {&DDRE, &PINE, &PORTE, 5},  // E5  3
+  {&DDRG, &PING, &PORTG, 5},  // G5  4
+  {&DDRE, &PINE, &PORTE, 3},  // E3  5
+  {&DDRH, &PINH, &PORTH, 3},  // H3  6
+  {&DDRH, &PINH, &PORTH, 4},  // H4  7
+  {&DDRH, &PINH, &PORTH, 5},  // H5  8
+  {&DDRH, &PINH, &PORTH, 6},  // H6  9
+  {&DDRB, &PINB, &PORTB, 4},  // B4 10
+  {&DDRB, &PINB, &PORTB, 5},  // B5 11
+  {&DDRB, &PINB, &PORTB, 6},  // B6 12
+  {&DDRB, &PINB, &PORTB, 7},  // B7 13
+  {&DDRJ, &PINJ, &PORTJ, 1},  // J1 14
+  {&DDRJ, &PINJ, &PORTJ, 0},  // J0 15
+  {&DDRH, &PINH, &PORTH, 1},  // H1 16
+  {&DDRH, &PINH, &PORTH, 0},  // H0 17
+  {&DDRD, &PIND, &PORTD, 3},  // D3 18
+  {&DDRD, &PIND, &PORTD, 2},  // D2 19
+  {&DDRD, &PIND, &PORTD, 1},  // D1 20
+  {&DDRD, &PIND, &PORTD, 0},  // D0 21
+  {&DDRA, &PINA, &PORTA, 0},  // A0 22
+  {&DDRA, &PINA, &PORTA, 1},  // A1 23
+  {&DDRA, &PINA, &PORTA, 2},  // A2 24
+  {&DDRA, &PINA, &PORTA, 3},  // A3 25
+  {&DDRA, &PINA, &PORTA, 4},  // A4 26
+  {&DDRA, &PINA, &PORTA, 5},  // A5 27
+  {&DDRA, &PINA, &PORTA, 6},  // A6 28
+  {&DDRA, &PINA, &PORTA, 7},  // A7 29
+  {&DDRC, &PINC, &PORTC, 7},  // C7 30
+  {&DDRC, &PINC, &PORTC, 6},  // C6 31
+  {&DDRC, &PINC, &PORTC, 5},  // C5 32
+  {&DDRC, &PINC, &PORTC, 4},  // C4 33
+  {&DDRC, &PINC, &PORTC, 3},  // C3 34
+  {&DDRC, &PINC, &PORTC, 2},  // C2 35
+  {&DDRC, &PINC, &PORTC, 1},  // C1 36
+  {&DDRC, &PINC, &PORTC, 0},  // C0 37
+  {&DDRD, &PIND, &PORTD, 7},  // D7 38
+  {&DDRG, &PING, &PORTG, 2},  // G2 39
+  {&DDRG, &PING, &PORTG, 1},  // G1 40
+  {&DDRG, &PING, &PORTG, 0},  // G0 41
+  {&DDRL, &PINL, &PORTL, 7},  // L7 42
+  {&DDRL, &PINL, &PORTL, 6},  // L6 43
+  {&DDRL, &PINL, &PORTL, 5},  // L5 44
+  {&DDRL, &PINL, &PORTL, 4},  // L4 45
+  {&DDRL, &PINL, &PORTL, 3},  // L3 46
+  {&DDRL, &PINL, &PORTL, 2},  // L2 47
+  {&DDRL, &PINL, &PORTL, 1},  // L1 48
+  {&DDRL, &PINL, &PORTL, 0},  // L0 49
+  {&DDRB, &PINB, &PORTB, 3},  // B3 50
+  {&DDRB, &PINB, &PORTB, 2},  // B2 51
+  {&DDRB, &PINB, &PORTB, 1},  // B1 52
+  {&DDRB, &PINB, &PORTB, 0},  // B0 53
+  {&DDRF, &PINF, &PORTF, 0},  // F0 54
+  {&DDRF, &PINF, &PORTF, 1},  // F1 55
+  {&DDRF, &PINF, &PORTF, 2},  // F2 56
+  {&DDRF, &PINF, &PORTF, 3},  // F3 57
+  {&DDRF, &PINF, &PORTF, 4},  // F4 58
+  {&DDRF, &PINF, &PORTF, 5},  // F5 59
+  {&DDRF, &PINF, &PORTF, 6},  // F6 60
+  {&DDRF, &PINF, &PORTF, 7},  // F7 61
+  {&DDRK, &PINK, &PORTK, 0},  // K0 62
+  {&DDRK, &PINK, &PORTK, 1},  // K1 63
+  {&DDRK, &PINK, &PORTK, 2},  // K2 64
+  {&DDRK, &PINK, &PORTK, 3},  // K3 65
+  {&DDRK, &PINK, &PORTK, 4},  // K4 66
+  {&DDRK, &PINK, &PORTK, 5},  // K5 67
+  {&DDRK, &PINK, &PORTK, 6},  // K6 68
+  {&DDRK, &PINK, &PORTK, 7}   // K7 69
+};
+  
+
+//"AVR" compatible pin definitions for ATmega640/1280/2560
+#elif defined(__AVR_ATmega640__) ||defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_AVR_PINOUT)
+
+// Two Wire (aka I2C) ports
+uint8_t const SDA_PIN = 35;
+uint8_t const SCL_PIN = 34;
+
+// SPI port
+uint8_t const SS_PIN = 15;
+uint8_t const MOSI_PIN = 17;
+uint8_t const MISO_PIN = 18;
+uint8_t const SCK_PIN = 16;
+
+static const pin_map_t digitalPinMap[] = {
+  {&DDRE, &PINE, &PORTE, 0},  // E0  0
+  {&DDRE, &PINE, &PORTE, 1},  // E1  1
+  {&DDRE, &PINE, &PORTE, 2},  // E2  2
+  {&DDRE, &PINE, &PORTE, 3},  // E3  3
+  {&DDRE, &PINE, &PORTE, 4},  // E4  4
+  {&DDRE, &PINE, &PORTE, 5},  // E5  5
+  {&DDRE, &PINE, &PORTE, 6},  // E6  6
+  {&DDRE, &PINE, &PORTE, 7},  // E7  7
+  
+  {&DDRH, &PINH, &PORTH, 0},  // H0  8
+  {&DDRH, &PINH, &PORTH, 1},  // H1  9
+  {&DDRH, &PINH, &PORTH, 2},  // H2 10
+  {&DDRH, &PINH, &PORTH, 3},  // H3 11
+  {&DDRH, &PINH, &PORTH, 4},  // H4 12
+  {&DDRH, &PINH, &PORTH, 5},  // H5 13
+  {&DDRH, &PINH, &PORTH, 6},  // H6 14
+  
+  {&DDRB, &PINB, &PORTB, 0},  // B0 15
+  {&DDRB, &PINB, &PORTB, 1},  // B1 16
+  {&DDRB, &PINB, &PORTB, 2},  // B2 17
+  {&DDRB, &PINB, &PORTB, 3},  // B3 18
+  {&DDRB, &PINB, &PORTB, 4},  // B4 19
+  {&DDRB, &PINB, &PORTB, 5},  // B5 20
+  {&DDRB, &PINB, &PORTB, 6},  // B6 21
+  {&DDRB, &PINB, &PORTB, 7},  // B7 22
+  
+  {&DDRH, &PINH, &PORTH, 7},  // H7 23
+  
+  {&DDRG, &PING, &PORTG, 3},  // G3 24
+  {&DDRG, &PING, &PORTG, 4},  // G4 25
+  
+  {&DDRL, &PINL, &PORTL, 0},  // L0 26
+  {&DDRL, &PINL, &PORTL, 1},  // L1 27
+  {&DDRL, &PINL, &PORTL, 2},  // L2 28
+  {&DDRL, &PINL, &PORTL, 3},  // L3 29
+  {&DDRL, &PINL, &PORTL, 4},  // L4 30
+  {&DDRL, &PINL, &PORTL, 5},  // L5 31
+  {&DDRL, &PINL, &PORTL, 6},  // L6 32
+  {&DDRL, &PINL, &PORTL, 7},  // L7 33
+  
+  {&DDRD, &PIND, &PORTD, 0},  // D0 34
+  {&DDRD, &PIND, &PORTD, 1},  // D1 35
+  {&DDRD, &PIND, &PORTD, 2},  // D2 36
+  {&DDRD, &PIND, &PORTD, 3},  // D3 37
+  {&DDRD, &PIND, &PORTD, 4},  // D4 38
+  {&DDRD, &PIND, &PORTD, 5},  // D5 39
+  {&DDRD, &PIND, &PORTD, 6},  // D6 40
+  {&DDRD, &PIND, &PORTD, 7},  // D7 41
+ 
+  {&DDRG, &PING, &PORTG, 0},  // G0 42
+  {&DDRG, &PING, &PORTG, 1},  // G1 43
+  
+  {&DDRC, &PINC, &PORTC, 0},  // C0 44
+  {&DDRC, &PINC, &PORTC, 1},  // C1 45
+  {&DDRC, &PINC, &PORTC, 2},  // C2 46
+  {&DDRC, &PINC, &PORTC, 3},  // C3 47
+  {&DDRC, &PINC, &PORTC, 4},  // C4 48
+  {&DDRC, &PINC, &PORTC, 5},  // C5 49
+  {&DDRC, &PINC, &PORTC, 6},  // C6 50
+  {&DDRC, &PINC, &PORTC, 7},  // C7 51
+  
+  {&DDRJ, &PINJ, &PORTJ, 0},  // J0 52
+  {&DDRJ, &PINJ, &PORTJ, 1},  // J1 53
+  {&DDRJ, &PINJ, &PORTJ, 2},  // J2 54
+  {&DDRJ, &PINJ, &PORTJ, 3},  // J3 55
+  {&DDRJ, &PINJ, &PORTJ, 4},  // J4 56
+  {&DDRJ, &PINJ, &PORTJ, 5},  // J5 57
+  {&DDRJ, &PINJ, &PORTJ, 6},  // J6 58
+  
+  {&DDRG, &PING, &PORTG, 2},  // G2 59
+  
+  {&DDRA, &PINA, &PORTA, 7},  // A7 60
+  {&DDRA, &PINA, &PORTA, 6},  // A6 61
+  {&DDRA, &PINA, &PORTA, 5},  // A5 62
+  {&DDRA, &PINA, &PORTA, 4},  // A4 63
+  {&DDRA, &PINA, &PORTA, 3},  // A3 64
+  {&DDRA, &PINA, &PORTA, 2},  // A2 65
+  {&DDRA, &PINA, &PORTA, 1},  // A1 66
+  {&DDRA, &PINA, &PORTA, 0},  // A0 67
+  
+  {&DDRJ, &PINJ, &PORTJ, 7},  // J7 68
+  
+  {&DDRF, &PINF, &PORTF, 0},  // F0 69
+  {&DDRF, &PINF, &PORTF, 1},  // F1 70
+  {&DDRF, &PINF, &PORTF, 2},  // F2 71
+  {&DDRF, &PINF, &PORTF, 3},  // F3 72
+  {&DDRF, &PINF, &PORTF, 4},  // F4 73
+  {&DDRF, &PINF, &PORTF, 5},  // F5 74
+  {&DDRF, &PINF, &PORTF, 6},  // F6 75
+  {&DDRF, &PINF, &PORTF, 7},  // F7 76
+  
+  {&DDRK, &PINK, &PORTK, 0},  // K0 77
+  {&DDRK, &PINK, &PORTK, 1},  // K1 78
+  {&DDRK, &PINK, &PORTK, 2},  // K2 79
+  {&DDRK, &PINK, &PORTK, 3},  // K3 80
+  {&DDRK, &PINK, &PORTK, 4},  // K4 81
+  {&DDRK, &PINK, &PORTK, 5},  // K5 82
+  {&DDRK, &PINK, &PORTK, 6},  // K6 83
+  {&DDRK, &PINK, &PORTK, 7},  // K7 84
+  
+  {&DDRG, &PING, &PORTG, 5},  // G5 85
+};
+
 
 //MightyCore standard pinout
 #elif defined(__AVR_ATmega1284__) || defined(__AVR_ATmega1284P__) \
@@ -227,94 +430,7 @@ static const pin_map_t digitalPinMap[] = {
   {&DDRD, &PIND, &PORTD, 4},  // D30 PD4
   {&DDRD, &PIND, &PORTD, 7},  // D31 PD7
 
-};
-
-#elif defined(__AVR_ATmega640__) ||defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) && defined(MEGA_PINOUT)
-// Mega
-
-// Two Wire (aka I2C) ports
-uint8_t const SDA_PIN = 20;
-uint8_t const SCL_PIN = 21;
-
-// SPI port
-uint8_t const SS_PIN = 53;
-uint8_t const MOSI_PIN = 51;
-uint8_t const MISO_PIN = 50;
-uint8_t const SCK_PIN = 52;
-
-static const pin_map_t digitalPinMap[] = {
-  {&DDRE, &PINE, &PORTE, 0},  // E0  0
-  {&DDRE, &PINE, &PORTE, 1},  // E1  1
-  {&DDRE, &PINE, &PORTE, 4},  // E4  2
-  {&DDRE, &PINE, &PORTE, 5},  // E5  3
-  {&DDRG, &PING, &PORTG, 5},  // G5  4
-  {&DDRE, &PINE, &PORTE, 3},  // E3  5
-  {&DDRH, &PINH, &PORTH, 3},  // H3  6
-  {&DDRH, &PINH, &PORTH, 4},  // H4  7
-  {&DDRH, &PINH, &PORTH, 5},  // H5  8
-  {&DDRH, &PINH, &PORTH, 6},  // H6  9
-  {&DDRB, &PINB, &PORTB, 4},  // B4 10
-  {&DDRB, &PINB, &PORTB, 5},  // B5 11
-  {&DDRB, &PINB, &PORTB, 6},  // B6 12
-  {&DDRB, &PINB, &PORTB, 7},  // B7 13
-  {&DDRJ, &PINJ, &PORTJ, 1},  // J1 14
-  {&DDRJ, &PINJ, &PORTJ, 0},  // J0 15
-  {&DDRH, &PINH, &PORTH, 1},  // H1 16
-  {&DDRH, &PINH, &PORTH, 0},  // H0 17
-  {&DDRD, &PIND, &PORTD, 3},  // D3 18
-  {&DDRD, &PIND, &PORTD, 2},  // D2 19
-  {&DDRD, &PIND, &PORTD, 1},  // D1 20
-  {&DDRD, &PIND, &PORTD, 0},  // D0 21
-  {&DDRA, &PINA, &PORTA, 0},  // A0 22
-  {&DDRA, &PINA, &PORTA, 1},  // A1 23
-  {&DDRA, &PINA, &PORTA, 2},  // A2 24
-  {&DDRA, &PINA, &PORTA, 3},  // A3 25
-  {&DDRA, &PINA, &PORTA, 4},  // A4 26
-  {&DDRA, &PINA, &PORTA, 5},  // A5 27
-  {&DDRA, &PINA, &PORTA, 6},  // A6 28
-  {&DDRA, &PINA, &PORTA, 7},  // A7 29
-  {&DDRC, &PINC, &PORTC, 7},  // C7 30
-  {&DDRC, &PINC, &PORTC, 6},  // C6 31
-  {&DDRC, &PINC, &PORTC, 5},  // C5 32
-  {&DDRC, &PINC, &PORTC, 4},  // C4 33
-  {&DDRC, &PINC, &PORTC, 3},  // C3 34
-  {&DDRC, &PINC, &PORTC, 2},  // C2 35
-  {&DDRC, &PINC, &PORTC, 1},  // C1 36
-  {&DDRC, &PINC, &PORTC, 0},  // C0 37
-  {&DDRD, &PIND, &PORTD, 7},  // D7 38
-  {&DDRG, &PING, &PORTG, 2},  // G2 39
-  {&DDRG, &PING, &PORTG, 1},  // G1 40
-  {&DDRG, &PING, &PORTG, 0},  // G0 41
-  {&DDRL, &PINL, &PORTL, 7},  // L7 42
-  {&DDRL, &PINL, &PORTL, 6},  // L6 43
-  {&DDRL, &PINL, &PORTL, 5},  // L5 44
-  {&DDRL, &PINL, &PORTL, 4},  // L4 45
-  {&DDRL, &PINL, &PORTL, 3},  // L3 46
-  {&DDRL, &PINL, &PORTL, 2},  // L2 47
-  {&DDRL, &PINL, &PORTL, 1},  // L1 48
-  {&DDRL, &PINL, &PORTL, 0},  // L0 49
-  {&DDRB, &PINB, &PORTB, 3},  // B3 50
-  {&DDRB, &PINB, &PORTB, 2},  // B2 51
-  {&DDRB, &PINB, &PORTB, 1},  // B1 52
-  {&DDRB, &PINB, &PORTB, 0},  // B0 53
-  {&DDRF, &PINF, &PORTF, 0},  // F0 54
-  {&DDRF, &PINF, &PORTF, 1},  // F1 55
-  {&DDRF, &PINF, &PORTF, 2},  // F2 56
-  {&DDRF, &PINF, &PORTF, 3},  // F3 57
-  {&DDRF, &PINF, &PORTF, 4},  // F4 58
-  {&DDRF, &PINF, &PORTF, 5},  // F5 59
-  {&DDRF, &PINF, &PORTF, 6},  // F6 60
-  {&DDRF, &PINF, &PORTF, 7},  // F7 61
-  {&DDRK, &PINK, &PORTK, 0},  // K0 62
-  {&DDRK, &PINK, &PORTK, 1},  // K1 63
-  {&DDRK, &PINK, &PORTK, 2},  // K2 64
-  {&DDRK, &PINK, &PORTK, 3},  // K3 65
-  {&DDRK, &PINK, &PORTK, 4},  // K4 66
-  {&DDRK, &PINK, &PORTK, 5},  // K5 67
-  {&DDRK, &PINK, &PORTK, 6},  // K6 68
-  {&DDRK, &PINK, &PORTK, 7}   // K7 69
-};
-                         
+};                       
                         
 
 
