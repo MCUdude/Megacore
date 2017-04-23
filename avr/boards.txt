@@ -32,7 +32,7 @@ menu.pinout=Pinout
 2561.bootloader.unlock_bits=0x3f
 2561.bootloader.lock_bits=0x0f
 
-2561.build.variant=standard
+2561.build.variant=64-pin-avr
 2561.build.core=MegaCore
 2561.build.mcu=atmega2561
 2561.build.board=AVR_ATmega2561
@@ -65,49 +65,49 @@ menu.pinout=Pinout
 2561.menu.clock.16MHz_external.upload.speed=115200
 2561.menu.clock.16MHz_external.bootloader.low_fuses=0xf7
 2561.menu.clock.16MHz_external.bootloader.high_fuses=0xd6
-2561.menu.clock.16MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2561.menu.clock.16MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2561.menu.clock.16MHz_external.build.f_cpu=16000000L
 
 2561.menu.clock.20MHz_external=20 MHz external
 2561.menu.clock.20MHz_external.upload.speed=115200
 2561.menu.clock.20MHz_external.bootloader.low_fuses=0xf7
 2561.menu.clock.20MHz_external.bootloader.high_fuses=0xd6
-2561.menu.clock.20MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2561.menu.clock.20MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2561.menu.clock.20MHz_external.build.f_cpu=20000000L
 
 2561.menu.clock.18_432MHz_external=18.432 MHz external
 2561.menu.clock.18_432MHz_external.upload.speed=115200
 2561.menu.clock.18_432MHz_external.bootloader.low_fuses=0xf7
 2561.menu.clock.18_432MHz_external.bootloader.high_fuses=0xd6
-2561.menu.clock.18_432MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2561.menu.clock.18_432MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2561.menu.clock.18_432MHz_external.build.f_cpu=18432000L
 
 2561.menu.clock.12MHz_external=12 MHz external
 2561.menu.clock.12MHz_external.upload.speed=57600
 2561.menu.clock.12MHz_external.bootloader.low_fuses=0xf7
 2561.menu.clock.12MHz_external.bootloader.high_fuses=0xd6
-2561.menu.clock.12MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2561.menu.clock.12MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2561.menu.clock.12MHz_external.build.f_cpu=12000000L
 
 2561.menu.clock.8MHz_external=8 MHz external
 2561.menu.clock.8MHz_external.upload.speed=38400
 2561.menu.clock.8MHz_external.bootloader.low_fuses=0xf7
 2561.menu.clock.8MHz_external.bootloader.high_fuses=0xd6
-2561.menu.clock.8MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2561.menu.clock.8MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2561.menu.clock.8MHz_external.build.f_cpu=8000000L
 
 2561.menu.clock.8MHz_internal=8 MHz internal
 2561.menu.clock.8MHz_internal.upload.speed=38400
 2561.menu.clock.8MHz_internal.bootloader.low_fuses=0xe2
 2561.menu.clock.8MHz_internal.bootloader.high_fuses=0xd6
-2561.menu.clock.8MHz_internal.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2561.menu.clock.8MHz_internal.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2561.menu.clock.8MHz_internal.build.f_cpu=8000000L
 
 2561.menu.clock.1MHz_internal=1 MHz internal
 2561.menu.clock.1MHz_internal.upload.speed=9600
 2561.menu.clock.1MHz_internal.bootloader.low_fuses=0x62
 2561.menu.clock.1MHz_internal.bootloader.high_fuses=0xd6
-2561.menu.clock.1MHz_internal.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2561.menu.clock.1MHz_internal.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2561.menu.clock.1MHz_internal.build.f_cpu=1000000L
 
 
@@ -132,9 +132,9 @@ menu.pinout=Pinout
 
 # Pinouts
 2560.menu.pinout.mega_pinout=Arduino MEGA pinout
-2560.menu.pinout.mega_pinout.build.variant=mega_pinout
+2560.menu.pinout.mega_pinout.build.variant=100-pin-arduino-mega
 2560.menu.pinout.avr_pinout=AVR pinout
-2560.menu.pinout.avr_pinout.build.variant=mega_avr_pinout
+2560.menu.pinout.avr_pinout.build.variant=100-pin-avr
 
 # Brown out detection
 2560.menu.BOD.2v7=2.7v
@@ -164,49 +164,49 @@ menu.pinout=Pinout
 2560.menu.clock.16MHz_external.upload.speed=115200
 2560.menu.clock.16MHz_external.bootloader.low_fuses=0xf7
 2560.menu.clock.16MHz_external.bootloader.high_fuses=0xd6
-2560.menu.clock.16MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2560.menu.clock.16MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2560.menu.clock.16MHz_external.build.f_cpu=16000000L
 
 2560.menu.clock.20MHz_external=20 MHz external
 2560.menu.clock.20MHz_external.upload.speed=115200
 2560.menu.clock.20MHz_external.bootloader.low_fuses=0xf7
 2560.menu.clock.20MHz_external.bootloader.high_fuses=0xd6
-2560.menu.clock.20MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2560.menu.clock.20MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2560.menu.clock.20MHz_external.build.f_cpu=20000000L
 
 2560.menu.clock.18_432MHz_external=18.432 MHz external
 2560.menu.clock.18_432MHz_external.upload.speed=115200
 2560.menu.clock.18_432MHz_external.bootloader.low_fuses=0xf7
 2560.menu.clock.18_432MHz_external.bootloader.high_fuses=0xd6
-2560.menu.clock.18_432MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2560.menu.clock.18_432MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2560.menu.clock.18_432MHz_external.build.f_cpu=18432000L
 
 2560.menu.clock.12MHz_external=12 MHz external
 2560.menu.clock.12MHz_external.upload.speed=57600
 2560.menu.clock.12MHz_external.bootloader.low_fuses=0xf7
 2560.menu.clock.12MHz_external.bootloader.high_fuses=0xd6
-2560.menu.clock.12MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2560.menu.clock.12MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2560.menu.clock.12MHz_external.build.f_cpu=12000000L
 
 2560.menu.clock.8MHz_external=8 MHz external
 2560.menu.clock.8MHz_external.upload.speed=38400
 2560.menu.clock.8MHz_external.bootloader.low_fuses=0xf7
 2560.menu.clock.8MHz_external.bootloader.high_fuses=0xd6
-2560.menu.clock.8MHz_external.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2560.menu.clock.8MHz_external.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2560.menu.clock.8MHz_external.build.f_cpu=8000000L
 
 2560.menu.clock.8MHz_internal=8 MHz internal
 2560.menu.clock.8MHz_internal.upload.speed=38400
 2560.menu.clock.8MHz_internal.bootloader.low_fuses=0xe2
 2560.menu.clock.8MHz_internal.bootloader.high_fuses=0xd6
-2560.menu.clock.8MHz_internal.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2560.menu.clock.8MHz_internal.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2560.menu.clock.8MHz_internal.build.f_cpu=8000000L
 
 2560.menu.clock.1MHz_internal=1 MHz internal
 2560.menu.clock.1MHz_internal.upload.speed=9600
 2560.menu.clock.1MHz_internal.bootloader.low_fuses=0x62
 2560.menu.clock.1MHz_internal.bootloader.high_fuses=0xd6
-2560.menu.clock.1MHz_internal.bootloader.file=optiboot_flash_256kb/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
+2560.menu.clock.1MHz_internal.bootloader.file=optiboot_flash/{build.mcu}/optiboot_flash_{build.mcu}_{upload.speed}_{build.f_cpu}.hex
 2560.menu.clock.1MHz_internal.build.f_cpu=1000000L
 
 
@@ -225,7 +225,7 @@ menu.pinout=Pinout
 1281.bootloader.unlock_bits=0x3f
 1281.bootloader.lock_bits=0x0f
 
-1281.build.variant=standard
+1281.build.variant=64-pin-avr
 1281.build.core=MegaCore
 1281.build.mcu=atmega1281
 1281.build.board=AVR_ATmega1281
@@ -325,9 +325,9 @@ menu.pinout=Pinout
 
 # Pinouts
 1280.menu.pinout.mega_pinout=Arduino MEGA pinout
-1280.menu.pinout.mega_pinout.build.variant=mega_pinout
+1280.menu.pinout.mega_pinout.build.variant=100-pin-arduino-mega
 1280.menu.pinout.avr_pinout=AVR pinout
-1280.menu.pinout.avr_pinout.build.variant=mega_avr_pinout
+1280.menu.pinout.avr_pinout.build.variant=100-pin-avr
 
 # Brown out detection
 1280.menu.BOD.2v7=2.7v
@@ -424,9 +424,9 @@ menu.pinout=Pinout
 
 # Pinouts
 640.menu.pinout.mega_pinout=Arduino MEGA pinout
-640.menu.pinout.mega_pinout.build.variant=mega_pinout
+640.menu.pinout.mega_pinout.build.variant=100-pin-arduino-mega
 640.menu.pinout.avr_pinout=AVR pinout
-640.menu.pinout.avr_pinout.build.variant=mega_avr_pinout
+640.menu.pinout.avr_pinout.build.variant=100-pin-avr
 
 # Brown out detection
 640.menu.BOD.2v7=2.7v
@@ -518,7 +518,7 @@ menu.pinout=Pinout
 128.bootloader.lock_bits=0x0f
 128.bootloader.low_fuses=0b{bootloader.bod_bits}{bootloader.sut_cksel_bits}
 
-128.build.variant=standard
+128.build.variant=64-pin-avr
 128.build.core=MegaCore
 128.build.mcu=atmega128
 128.build.board=AVR_ATmega128
@@ -619,7 +619,7 @@ menu.pinout=Pinout
 64.bootloader.low_fuses=0b{bootloader.bod_bits}{bootloader.sut_cksel_bits}
 
 
-64.build.variant=standard
+64.build.variant=64-pin-avr
 64.build.core=MegaCore
 64.build.mcu=atmega64
 64.build.board=AVR_ATmega64
