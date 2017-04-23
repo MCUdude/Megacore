@@ -1,0 +1,3 @@
+[submodule "avr/bootloaders/optiboot_flash"]
+	path = avr/bootloaders/optiboot_flash
+	url = https://github.com/MCUdude/optiboot_flash
