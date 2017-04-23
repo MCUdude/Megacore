@@ -8,60 +8,110 @@
  * Copyright 2013-2015 by Bill Westfield.
  * Copyright 2010 by Peter Knight.
  * This software is licensed under version 2 of the Gnu Public Licence.
- * See optiboot.c for details.
+ * See optiboot_flash.c for details.
  */
-
-
-
-/*
- * Handle devices with up to 4 uarts (eg m1280.)  Rather inelegantly.
- * Note that mega8/m32 still needs special handling, because ubrr is handled
- * differently.
- */
-#if UART == 0
-# define UART_SRA UCSR0A
-# define UART_SRB UCSR0B
-# define UART_SRC UCSR0C
-# define UART_SRL UBRR0L
-# define UART_UDR UDR0
-#elif UART == 1
-#if !defined(UDR1)
-#error UART == 1, but no UART1 on device
-#endif
-# define UART_SRA UCSR1A
-# define UART_SRB UCSR1B
-# define UART_SRC UCSR1C
-# define UART_SRL UBRR1L
-# define UART_UDR UDR1
-#elif UART == 2
-#if !defined(UDR2)
-#error UART == 2, but no UART2 on device
-#endif
-# define UART_SRA UCSR2A
-# define UART_SRB UCSR2B
-# define UART_SRC UCSR2C
-# define UART_SRL UBRR2L
-# define UART_UDR UDR2
-#elif UART == 3
-#if !defined(UDR1)
-#error UART == 3, but no UART3 on device
-#endif
-# define UART_SRA UCSR3A
-# define UART_SRB UCSR3B
-# define UART_SRC UCSR3C
-# define UART_SRL UBRR3L
-# define UART_UDR UDR3
-#endif
-
-
 
 
 /*------------------------------------------------------------------------ */
-#if defined(__AVR_ATmega64__) || defined (__AVR_ATmega128__)
+#if defined(__AVR_ATmega8__) || defined(__AVR_ATmega88__) ||  defined(__AVR_ATmega88P__)   \
+|| defined(__AVR_ATmega168__) || defined(__AVR_ATmega168P__) || defined(__AVR_ATmega328__) \
+|| defined(__AVR_ATmega328P__)
 /*------------------------------------------------------------------------ */
 #if !defined(LED)
 #define LED         B5
 #endif
+
+/* Fix register names */
+#if defined(__AVR_ATmega8__)
+#define UCSR0A  UCSRA
+#define UDR0    UDR
+#define UDRE0   UDRE
+#define RXC0    RXC
+#define FE0     FE
+#define TIFR1   TIFR
+#define WDTCSR  WDTCR
+#endif
+
+/* Ports for soft UART */
+#ifdef SOFT_UART
+#define UART_PORT   PORTD
+#define UART_PIN    PIND
+#define UART_DDR    DDRD
+#define UART_TX_BIT 1
+#define UART_RX_BIT 0
+#endif
+#endif
+
+
+/*------------------------------------------------------------------------ */
+#if defined(__AVR_ATmega8515__) || defined(__AVR_ATmega162__) 
+/*------------------------------------------------------------------------ */
+#if !defined(LED)
+#define LED         B0
+#endif
+
+/* Fix register names */
+#define UCSR0A  UCSRA
+#define UDR0    UDR
+#define UDRE0   UDRE
+#define RXC0    RXC
+#define FE0     FE
+#define TIFR1   TIFR
+#define WDTCSR  WDTCR
+
+/* Ports for soft UART */
+#ifdef SOFT_UART
+#define UART_PORT   PORTD
+#define UART_PIN    PIND
+#define UART_DDR    DDRD
+#define UART_TX_BIT 1
+#define UART_RX_BIT 0
+#endif
+#endif
+
+
+/*------------------------------------------------------------------------ */
+#if defined(__AVR_ATmega8535__) || defined(__AVR_ATmega16__) || defined(__AVR_ATmega32__)    \
+|| defined(__AVR_ATmega164A__) || defined(__AVR_ATmega164P__) || defined(__AVR_ATmega324A__) \
+|| defined(__AVR_ATmega324P__) || defined(__AVR_ATmega324PA__) || defined(__AVR_ATmega644__) \
+|| defined(__AVR_ATmega644P__) || defined(__AVR_ATmega1284__) || defined(__AVR_ATmega1284P__)
+/*------------------------------------------------------------------------ */
+#if !defined(LED)
+#define LED         B0
+#endif
+
+/* Fix register names */
+#if  defined(__AVR_ATmega8535__) || defined(__AVR_ATmega16__) || defined(__AVR_ATmega32__)
+#define UCSR0A  UCSRA
+#define UDR0    UDR
+#define UDRE0   UDRE
+#define RXC0    RXC
+#define FE0     FE
+#define TIFR1   TIFR
+#define WDTCSR  WDTCR
+#endif
+#if defined(__AVR_ATmega16__) || defined(__AVR_ATmega32__)
+#define WDCE        WDTOE
+#endif
+
+/* Ports for soft UART */
+#ifdef SOFT_UART
+#define UART_PORT   PORTD
+#define UART_PIN    PIND
+#define UART_DDR    DDRD
+#define UART_TX_BIT 1
+#define UART_RX_BIT 0
+#endif
+#endif
+
+
+/*------------------------------------------------------------------------ */
+#if defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__)
+/*------------------------------------------------------------------------ */
+#if !defined(LED)
+#define LED         B5
+#endif
+
 #define TIFR1 TIFR
 #define WDTCSR WDTCR
 //#define MCUSR MCUCSR
@@ -72,8 +122,8 @@
 #define UART_PORT   PORTE
 #define UART_PIN    PINE
 #define UART_DDR    DDRE
-#define UART_TX_BIT 3
-#define UART_RX_BIT 4
+#define UART_TX_BIT 1
+#define UART_RX_BIT 0
 #endif
 #endif
 
@@ -112,6 +162,104 @@
 #define UART_RX_BIT 0
 #endif
 #endif
+
+
+/*------------------------------------------------------------------------ */
+#if defined(__AVR_ATmega169__) 
+/*------------------------------------------------------------------------ */
+#if !defined(LED)
+#define LED         B5
+#endif
+
+/* Fix register names */
+#define UCSR0A UCSRA
+#define UCSR0B UCSRB
+#define UCSR0C UCSRC
+#define UBRR0L UBRRL
+#define UDR0 UDR
+#define UDRE0 UDRE
+#define RXC0 RXC
+#define FE0 FE
+#define WDTCSR WDTCR
+#define U2X0 U2X
+#define RXEN0 RXEN
+#define TXEN0 TXEN
+#define UCSZ00 UCSZ0
+#define UCSZ01 UCSZ1
+
+/* Ports for soft UART */
+#ifdef SOFT_UART
+#define UART_PORT   PORTE
+#define UART_PIN    PINE
+#define UART_DDR    DDRE
+#define UART_TX_BIT 1
+#define UART_RX_BIT 0
+#endif
+#endif
+
+/*------------------------------------------------------------------------ */
+#if defined(__AVR_ATmega169P__) || defined(__AVR_ATmega329__) || defined(__AVR_ATmega329P__) \
+|| defined(__AVR_ATmega3290__) || defined(__AVR_ATmega3290P__) || defined(__AVR_ATmega649__) \
+|| defined(__AVR_ATmega649P__) || defined(__AVR_ATmega6490__) || defined(__AVR_ATmega6490P__)
+/*------------------------------------------------------------------------ */
+#if !defined(LED)
+#define LED         B5
+#endif
+
+/* Fix register names */
+#define WDTCSR WDTCR
+
+/* Ports for soft UART */
+#ifdef SOFT_UART
+#define UART_PORT   PORTE
+#define UART_PIN    PINE
+#define UART_DDR    DDRE
+#define UART_TX_BIT 1
+#define UART_RX_BIT 0
+#endif
+#endif
+
+
+/*
+ * Handle devices with up to 4 uarts (eg m1280.)  Rather inelegantly.
+ * Note that mega8/m32 still needs special handling, because ubrr is handled
+ * differently.
+ */
+#if UART == 0
+#define UART_SRA UCSR0A
+#define UART_SRB UCSR0B
+#define UART_SRC UCSR0C
+#define UART_SRL UBRR0L
+#define UART_UDR UDR0
+#elif UART == 1
+#if !defined(UDR1)
+#error UART == 1, but no UART1 on device
+#endif
+#define UART_SRA UCSR1A
+#define UART_SRB UCSR1B
+#define UART_SRC UCSR1C
+#define UART_SRL UBRR1L
+#define UART_UDR UDR1
+#elif UART == 2
+#if !defined(UDR2)
+#error UART == 2, but no UART2 on device
+#endif
+#define UART_SRA UCSR2A
+#define UART_SRB UCSR2B
+#define UART_SRC UCSR2C
+#define UART_SRL UBRR2L
+#define UART_UDR UDR2
+#elif UART == 3
+#if !defined(UDR3)
+#error UART == 3, but no UART3 on device
+#endif
+#define UART_SRA UCSR3A
+#define UART_SRB UCSR3B
+#define UART_SRC UCSR3C
+#define UART_SRL UBRR3L
+#define UART_UDR UDR3
+#endif
+
 
 
 /*
