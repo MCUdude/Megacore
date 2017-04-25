@@ -27,6 +27,7 @@
 #define NUM_DIGITAL_PINS            86
 #define NUM_ANALOG_INPUTS           16
 #define analogInputToDigitalPin(p)  ((p < 16) ? (p) + 69 : -1)
+#define analogPinToChannel(p)      ((p) < NUM_ANALOG_INPUTS ? (p) : (p) >= 69 ? (p) - 69 : -1)
 #define digitalPinHasPWM(p)         (((p) >= 3 && (p) <= 5) || ((p) >= 11 && (p)<= 14) || ((p) >= 19 && (p)<= 22) || ((p) >= 29 && (p)<= 31) || ((p) == 85))
 #define digitalPinToInterrupt(p)    (((p) >= 4 && (p) <= 7) ? (p) : ((p) >= 34 && (p) <= 37) ? (p) - 34 : NOT_AN_INTERRUPT)
 
