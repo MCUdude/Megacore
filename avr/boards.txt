@@ -32,8 +32,8 @@ menu.pinout=Pinout
 2561.bootloader.unlock_bits=0x3f
 2561.bootloader.lock_bits=0x0f
 
+2561.build.core=MCUdude_corefiles
 2561.build.variant=64-pin-avr
-2561.build.core=MegaCore
 2561.build.mcu=atmega2561
 2561.build.board=AVR_ATmega2561
 
@@ -126,7 +126,7 @@ menu.pinout=Pinout
 2560.bootloader.unlock_bits=0x3f
 2560.bootloader.lock_bits=0x0f
 
-2560.build.core=MegaCore
+2560.build.core=MCUdude_corefiles
 2560.build.mcu=atmega2560
 2560.build.board=AVR_ATmega2560
 
@@ -225,8 +225,8 @@ menu.pinout=Pinout
 1281.bootloader.unlock_bits=0x3f
 1281.bootloader.lock_bits=0x0f
 
+1281.build.core=MCUdude_corefiles
 1281.build.variant=64-pin-avr
-1281.build.core=MegaCore
 1281.build.mcu=atmega1281
 1281.build.board=AVR_ATmega1281
 
@@ -319,7 +319,7 @@ menu.pinout=Pinout
 1280.bootloader.unlock_bits=0x3f
 1280.bootloader.lock_bits=0x0f
 
-1280.build.core=MegaCore
+1280.build.core=MCUdude_corefiles
 1280.build.mcu=atmega1280
 1280.build.board=AVR_ATmega1280
 
@@ -418,7 +418,7 @@ menu.pinout=Pinout
 640.bootloader.unlock_bits=0x3f
 640.bootloader.lock_bits=0x0f
 
-640.build.core=MegaCore
+640.build.core=MCUdude_corefiles
 640.build.mcu=atmega640
 640.build.board=AVR_ATmega640
 
@@ -518,8 +518,8 @@ menu.pinout=Pinout
 128.bootloader.lock_bits=0x0f
 128.bootloader.low_fuses=0b{bootloader.bod_bits}{bootloader.sut_cksel_bits}
 
+128.build.core=MCUdude_corefiles
 128.build.variant=64-pin-avr
-128.build.core=MegaCore
 128.build.mcu=atmega128
 128.build.board=AVR_ATmega128
 
@@ -618,9 +618,8 @@ menu.pinout=Pinout
 64.bootloader.lock_bits=0x0f
 64.bootloader.low_fuses=0b{bootloader.bod_bits}{bootloader.sut_cksel_bits}
 
-
+64.build.core=MCUdude_corefiles
 64.build.variant=64-pin-avr
-64.build.core=MegaCore
 64.build.mcu=atmega64
 64.build.board=AVR_ATmega64
 
