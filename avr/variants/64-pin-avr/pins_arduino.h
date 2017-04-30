@@ -63,6 +63,7 @@
 #define NUM_DIGITAL_PINS            54
 #endif	
 #define NUM_ANALOG_INPUTS           8
+#define EXTERNAL_NUM_INTERRUPTS     8
 #define analogInputToDigitalPin(p) (((p) < 8) ? (p) + 45 : -1)
 #define analogPinToChannel(p)      ((p) < NUM_ANALOG_INPUTS ? (p) : (p) >= 45 ? (p) - 45 : -1)
 #define digitalPinHasPWM(p)        (((p) >= 3 && (p) <= 5) || ((p) >= 12 && (p) <= 15))
