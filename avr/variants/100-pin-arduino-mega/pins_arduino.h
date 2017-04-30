@@ -25,7 +25,7 @@
 
 #include <avr/pgmspace.h>
 
-#define MEGA_PINOUT
+#define MEGACORE_100_PIN_MEGA_PINOUT
 
 #define NUM_DIGITAL_PINS            70
 #define NUM_ANALOG_INPUTS           16

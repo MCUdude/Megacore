@@ -21,8 +21,7 @@
 #include <avr/pgmspace.h>
 
 // Necessary definition to detect what pinout is in use
-#undef MEGA_PINOUT
-#define MEGA_AVR_PINOUT
+#define MEGACORE_100_PIN_AVR_PINOUT
 
 // General IO defs
 #define NUM_DIGITAL_PINS            86
