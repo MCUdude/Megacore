@@ -167,3 +167,6 @@ Here's some simple schematics for the ATmega64/128/1281/2561 and ATmega640/1280/
 <b>Click to enlarge:</b> <br/>
 <img src="http://i.imgur.com/h9J6rxg.png" width="400">    <img src="http://i.imgur.com/gQS1ORv.png" width="400">
 
+
+## Current Travis CI build result:
+[![Build Status](https://travis-ci.org/MCUdude/MegaCore.svg?branch=avr-100-pin)](https://travis-ci.org/MCUdude/MegaCore)
