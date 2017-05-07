@@ -163,5 +163,7 @@ Beside including the original Arduino Mega pinout for the ATmega640/1280/2560, I
 
 
 ## Minimal setup
-Here is a simple schematic showing a minimal setup using an external crystal. Skip the crystal and the two 22pF capacitors if you're using the internal oscillator. <br/> **There have been reported issues when trying to burn the bootloader. If you experience such issues, try adding a 1k resistor in series with pin PE0 and PE1.**
-<img src="http://i.imgur.com/UIino8I.png" width="750">
+Here's some simple schematics for the ATmega64/128/1281/2561 and ATmega640/1280/2560 showing a minimal setup using an external crystal. Omit the crystal and the two 22pF capacitors if you're using the internal oscillator. <br/> 
+<b>Click to enlarge:</b> <br/>
+<img src="http://i.imgur.com/h9J6rxg.png" width="400">    <img src="http://i.imgur.com/gQS1ORv.png" width="400">
+
