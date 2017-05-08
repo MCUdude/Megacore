@@ -501,3 +501,5 @@ uint8_t const SCK_PIN = 13;
 #else
 #error Architecture or board not supported.
 #endif
+
+#endif
