@@ -1,4 +1,6 @@
-# MegaCore
+# MegaCore  
+[![Build Status](https://travis-ci.org/MCUdude/MegaCore.svg?branch=avr-100-pin)](https://travis-ci.org/MCUdude/MegaCore)  
+
 An Arduino core for ATmega64, ATmega128, ATmega640, ATmega1280, ATmega1281, ATmega2560 and ATmega2561, all running a [modified version of Optiboot](#write-to-own-flash). Major libraries such as SD, Servo, SPI and Wire are modified to work with this core. Still, a large amount of third-party libraries often works without any modifications. <br/>
 This core requires at least Arduino IDE v1.6, where v1.6.12+ is recommended. <br/>
 If you're into "pure" AVR programming, I'm happy to tell you that all relevant keywords are being highlighted by the IDE through a separate keywords file. Make sure to test the [example files](https://github.com/MCUdude/MegaCore/tree/master/avr/libraries/AVR_examples/examples) (File > Examples > AVR C code examples).
@@ -166,7 +168,3 @@ Beside including the original Arduino Mega pinout for the ATmega640/1280/2560, I
 Here's some simple schematics for the ATmega64/128/1281/2561 and ATmega640/1280/2560 showing a minimal setup using an external crystal. Omit the crystal and the two 22pF capacitors if you're using the internal oscillator. <br/> 
 <b>Click to enlarge:</b> <br/>
 <img src="http://i.imgur.com/h9J6rxg.png" width="400">    <img src="http://i.imgur.com/gQS1ORv.png" width="400">
-
-
-## Current Travis CI build result:
-[![Build Status](https://travis-ci.org/MCUdude/MegaCore.svg?branch=avr-100-pin)](https://travis-ci.org/MCUdude/MegaCore)
