@@ -1,5 +1,5 @@
 # MegaCore  
-[![Build Status](https://travis-ci.org/MCUdude/MegaCore.svg?branch=avr-100-pin)](https://travis-ci.org/MCUdude/MegaCore)  
+[![Build Status](https://travis-ci.org/MCUdude/MegaCore.svg?branch=master)](https://travis-ci.org/MCUdude/MegaCore)  
 
 An Arduino core for ATmega64, ATmega128, ATmega640, ATmega1280, ATmega1281, ATmega2560 and ATmega2561, all running a [modified version of Optiboot](#write-to-own-flash). Major libraries such as SD, Servo, SPI and Wire are modified to work with this core. Still, a large amount of third-party libraries often works without any modifications. <br/>
 This core requires at least Arduino IDE v1.6, where v1.6.12+ is recommended. <br/>
