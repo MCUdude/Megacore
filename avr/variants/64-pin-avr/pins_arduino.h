@@ -90,6 +90,23 @@ static const uint8_t A7 = 52;
 
 
 
+#if defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2561__)
+// PCINT defs
+#define digitalPinToPCICR(p)    ((((p) >= 8) && ((p) <= 15)) || ((p) == 0) ? \
+                                (&PCICR) : ((uint8_t*)0))
+                                
+#define digitalPinToPCICRbit(p) ((((p) >= 8) && ((p) <= 15)) ? 0 : \
+                                ((((p) == 0)  ? 1 : 0)))
+
+#define digitalPinToPCMSK(p)    ((((p) >= 8) && ((p) <= 15)) ? (&PCMSK0) : \
+                                ((((p) == 0)  ? (&PCMSK1) : ((uint8_t*)0))))
+                                
+#define digitalPinToPCMSKbit(p) ((((p) >= 8) && ((p) <= 15)) ? ((p) - 8) : \
+                                (((p) ==  0) ? 1 : 0))
+#endif
+
+
+
 #ifdef ARDUINO_MAIN
 
 const uint16_t PROGMEM port_to_mode_PGM[] = {
