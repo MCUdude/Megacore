@@ -635,8 +635,10 @@ function build_sketch()
 
     if [[ "$sketchPath" =~ \.ino$ || "$sketchPath" =~ \.pde$ ]]; then
       # A sketch was specified
-      build_this_sketch "$sketchPath" "$boardID" "$IDEversion" "$allowFail"
-      buildSketchExitCode=$?
+      if ! build_this_sketch "$sketchPath" "$boardID" "$IDEversion" "$allowFail"; then
+        # build_this_sketch returned a non-zero exit code
+        buildSketchExitCode=1
+      fi
     else
       # Search for all sketches in the path and put them in an array
       # https://github.com/koalaman/shellcheck/wiki/SC2207
@@ -653,6 +655,7 @@ function build_sketch()
         sketchNameWithoutPathWithoutExtension="${sketchNameWithoutPathWithExtension%.*}"
         if [[ "$sketchFolder" == "$sketchNameWithoutPathWithoutExtension" ]]; then
           if ! build_this_sketch "$sketchName" "$boardID" "$IDEversion" "$allowFail"; then
+            # build_this_sketch returned a non-zero exit code
             buildSketchExitCode=1;
           fi
         fi
@@ -700,7 +703,7 @@ function build_this_sketch()
   done
 
   # If the sketch build failed and failure is not allowed for this test then fail the Travis build after completing all sketch builds
-  if [[ "$arduinoExitCode" != 0 ]]; then
+  if [[ "$arduinoExitCode" != "0" ]]; then
     if [[ "$allowFail" != "true" ]]; then
       buildThisSketchExitCode=1
     fi
