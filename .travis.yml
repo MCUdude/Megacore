@@ -405,8 +405,6 @@ script:
   # Verify every sketch in SKETCH_PATH using the environment variables set in the matrix
   - build_sketch "$SKETCH_PATH" "$BOARD_ID" "$ALLOW_FAILURE" "$START_IDE_VERSION" "$END_IDE_VERSION"
 
-  # Fail the job if any sketch verification failed
-  - check_success
 
 after_script:
   # Determine user name and repository name from TRAVIS_REPO_SLUG so the configuration will automatically adjust to forks
