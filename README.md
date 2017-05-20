@@ -1,9 +1,9 @@
 # MegaCore  
-[![Build Status](https://travis-ci.org/MCUdude/MegaCore.svg?branch=master)](https://travis-ci.org/MCUdude/MegaCore)  
+[![Build Status](https://travis-ci.org/MCUdude/MegaCore.svg?branch=master)](https://travis-ci.org/MCUdude/MegaCore) [![MegaCore forum thread](https://img.shields.io/badge/support-forum-blue.svg)](https://forum.arduino.cc/index.php?topic=386733.0)
 
-An Arduino core for ATmega64, ATmega128, ATmega640, ATmega1280, ATmega1281, ATmega2560 and ATmega2561, all running a [modified version of Optiboot](#write-to-own-flash). Major libraries such as SD, Servo, SPI and Wire are modified to work with this core. Still, a large amount of third-party libraries often works without any modifications. <br/>
+An Arduino core for ATmega64, ATmega128, ATmega640, ATmega1280, ATmega1281, ATmega2560 and ATmega2561, all running a [custom version of Optiboot](#write-to-own-flash). Major libraries such as SD, Servo, SPI and Wire are modified to work with this core. Still, a large amount of third-party libraries often works without any modifications. <br/>
 This core requires at least Arduino IDE v1.6, where v1.6.12+ is recommended. <br/>
-If you're into "pure" AVR programming, I'm happy to tell you that all relevant keywords are being highlighted by the IDE through a separate keywords file. Make sure to test the [example files](https://github.com/MCUdude/MegaCore/tree/master/avr/libraries/AVR_examples/examples) (File > Examples > AVR C code examples).
+If you're into "pure" AVR programming, I'm happy to tell you that all relevant keywords are being highlighted by the IDE through a separate keywords file. Make sure to check out the [example files](https://github.com/MCUdude/MegaCore/tree/master/avr/libraries/AVR_examples/examples) (File > Examples > AVR C code examples).
 
 
 # Table of contents
@@ -40,7 +40,7 @@ Can't decide what microcontroller to choose? Have a look at the specification ta
 | **Flash**    | 256kB    | 128kB    | 64kB    | 128kB    | 128kB    | 128kB   | 64kB   |
 | **RAM**      | 8kB      | 8kB      | 8kB     | 8kB      | 8kB      | 4kB     | 4kB    |
 | **EEPROM**   | 4kB      | 4kB      | 4kB     | 4kB      | 4kB      | 4kB     | 2kB    |
-| **IO pins**  | 86 *     | 86 *     | 86 *    | 54       | 54       | 53      | 53     |
+| **IO pins**  | 70/86 *  | 70/86 *  | 70/86 * | 54       | 54       | 53      | 53     |
 | **PWM pins** | 15       | 15       | 15      | 8        | 8        | 7       | 7      |
 | **LED pin**  | PB7      | PB7      | PB7     | PB5      | PB5      | PB5     | PB5    |
 
@@ -57,7 +57,7 @@ Can't decide what microcontroller to choose? Have a look at the specification ta
 * 1 MHz internal oscillator
 
 Select your microcontroller in the boards menu, then select the clock frequency. You'll have to hit "Burn bootloader" in order to set the correct fuses and upload the correct bootloader. <br/>
-Make sure you connect an ISP programmer, and select the correct one in the "Programmers" menu. For time critical operations an external oscillator is recommended. 
+Make sure you connect an ISP programmer, and select the correct one in the "Programmers" menu. For time critical applications an external oscillator is recommended. 
 </br></br>
 
 <b>*</b> When using the 18.432 MHz option (or any frequency by which 64 cannot be divided evenly), micros() is 4-5 times slower (~110 clocks). It reports the time at the point when it was called, not the end.
@@ -96,10 +96,9 @@ Make sure you connect an ISP programmer, and select the correct one in the "Prog
  
  
 ## Write to own flash
-A while ago [@majekw](https://github.com/majekw) announced that he'd [successfully modified the Optiboot bootloader](http://forum.arduino.cc/index.php?topic=332191.0) to let the running program permanently store content in the flash memory.
-The flash memory is much faster than the EEPROM, and can handle about 10 000 write cycles. <br/>
-With help from [majek](https://github.com/MCUdude/MegaCore/issues/6) this feature is working perfectly with the MegaCore! To enable this feature the bootloader needs to be replaced by the new one. Simply hit "Burn Bootloader", and it's done! <br/>
-Please check out the [Optiboot flasher example](https://github.com/MCUdude/MegaCore/blob/9793029aea382b41fc5dd81aa8af909fbf244026/avr/libraries/Optiboot_flasher/examples/SerialReadWrite/SerialReadWrite.ino) for more info about how this feature works, and how you can try it on your MegaCore compatible microcontroller.
+MegaCore implements [@majekw's fork of Optiboot](https://github.com/majekw/optiboot), which enables flash writing functionality within the running application. This means that content from e.g. a sensor can be stored in the flash memory directly, without the need of externa memory. Flash memory is much faster than EEPROM, and can handle about 10 000 write cycles.
+
+Please check out the [Optiboot flasher example](https://github.com/MCUdude/MegaCore/blob/9793029aea382b41fc5dd81aa8af909fbf244026/avr/libraries/Optiboot_flasher/examples/SerialReadWrite/SerialReadWrite.ino) for more info about how this feature works, and how you can use it with your MegaCore compatible microcontroller.
 
 
 ## How to install
@@ -111,7 +110,6 @@ This installation method requires Arduino IDE version 1.6.4 or greater.
 * Open the **Tools > Board > Boards Manager...** menu item.
 * Wait for the platform indexes to finish downloading.
 * Scroll down until you see the **MegaCore** entry and click on it.
-  * **Note**: If you are using Arduino IDE 1.6.6 then you may need to close **Boards Manager** and then reopen it before the **MegaCore** entry will appear.
 * Click **Install**.
 * After installation is complete close the **Boards Manager** window.
 
@@ -121,7 +119,7 @@ Open Arduino IDE, and a new category in the boards menu called "MegaCore" will s
 
 
 ## Getting started with MegaCore
-Ok, so you're downloaded and installed MegaCore, but do I get the wheels spinning? Here's a quick start guide:
+Ok, so you're downloaded and installed MegaCore, but how to get started? Here's a quick start guide:
 * Hook up your microcontroller as shown in the [pinout diagram](#pinout).
 	- If you're not planning to use the bootloader (uploading code using a USB to serial adapter), the FTDI header and the 100 nF capacitor on the reset pin can be omitted. 
 * Open the **Tools > Board** menu item, and select **ATmega64**, **ATmega128**, **ATmega1281**, **ATmega2561**, **ATmega640**, **ATmega1280** or **ATmega2560**.
@@ -132,11 +130,10 @@ Ok, so you're downloaded and installed MegaCore, but do I get the wheels spinnin
 	- Disconnect your programmer tool, and connect a USB to serial adapter to the microcontroller, like shown in the [pinout diagram](#pinout). Then select the correct serial port under the **Tools** menu, and click the **Upload** button. If you're getting some kind of timeout error, it means your RX and TX pins are swapped, or your auto reset circuity isn't working properly (the 100 nF capacitor on the reset line).
 	- Keep your programmer connected, and hold down the `shift` button while clicking **Upload**. This will erase the bootloader and upload your code using the programmer tool.
 
-Your code should now be running on your microcontroller! If you experience any issues related to bootloader burning or serial uploading, please use *[this forum post](https://forum.arduino.cc/index.php?topic=386733.0)* or create an issue on Github.
-
+Your code should now be running on the microcontroller!
 
 ## Wiring reference
-To extend this core's functionality a bit futher, I've added a few missing Wiring functions. As many of you know Arduino is based on Wiring, but that doesn't mean the Wiring development isnt active. These functions is used as "regular" Arduino functions, and there's no need to include an external library.<br/>
+To extend this core's functionality a bit futher, I've added a few missing Wiring functions to this hardware package. As many of you know Arduino is based on Wiring, but that doesn't mean the Wiring development isn't active. These functions is used as "regular" Arduino functions, and there's no need to include an external library.<br/>
 I hope you find this useful, because they really are!
 
 ### Function list
@@ -155,10 +152,10 @@ I hope you find this useful, because they really are!
 ## Pinout
 
 ### ATmega64/128/1281/2561
-Since there are no standarized Arduino pinout for the ATmega64/128/1281/2561, I decided to create my own. I've tried to make it as simple and logical as possible. This pinout makes great sense if you're buying this [cheap breakout boards](http://www.ebay.com/itm/381547311629) at Ebay or AliExpress (just make sure to remove C3 in order to get auto reset working). The standard LED pin is assigned to Arduino pin 13, and will blink twice if you hit the reset button.
+Since there are no standarized Arduino pinout for the ATmega64/128/1281/2561, I've created one. I've tried to make it as simple and logical as possible. This pinout makes great sense if you're buying this [cheap breakout boards](http://www.ebay.com/itm/381547311629) at Ebay or AliExpress (just make sure to remove C3 in order to get auto reset working). The standard LED pin is assigned to Arduino pin 13, and will blink twice if you hit the reset button.
 
 ### ATmega640/1280/2560
-Beside including the original Arduino Mega pinout for the ATmega640/1280/2560, I've also added what I call *The AVR pinout*, which is a more straight forward and logical pinout if you're not working with the Arduino Mega board. For the default Arduino Mega pinout, the standard LED pin is assigned to Arduino pin 13, and for the AVR pin it's assigned to pin 22.
+Beside including the original Arduino Mega pinout for the ATmega640/1280/2560, I've also added an *AVR pinout*, which is a more straight forward and logical pinout if you're not working with the Arduino Mega board. For the default Arduino Mega pinout, the standard LED pin is assigned to Arduino pin 13, and for the AVR pin it's assigned to pin 22.
 <b>Click to enlarge:</b> <br/>
 <img src="http://i.imgur.com/ez5MyvI.jpg" width="280"> <img src="http://i.imgur.com/k00WGLk.jpg" width="280"> <img src="http://i.imgur.com/DfR7arD.jpg" width="280">
 
@@ -167,4 +164,4 @@ Beside including the original Arduino Mega pinout for the ATmega640/1280/2560, I
 ## Minimal setup
 Here's some simple schematics for the ATmega64/128/1281/2561 and ATmega640/1280/2560 showing a minimal setup using an external crystal. Omit the crystal and the two 22pF capacitors if you're using the internal oscillator. <br/> 
 <b>Click to enlarge:</b> <br/>
-<img src="http://i.imgur.com/h9J6rxg.png" width="400">    <img src="http://i.imgur.com/gQS1ORv.png" width="400">
+<img src="http://i.imgur.com/lYzdULi.png" width="400">    <img src="http://i.imgur.com/gQS1ORv.png" width="400">
