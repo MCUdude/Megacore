@@ -456,6 +456,9 @@ void pre_main(void) {
   asm volatile (
     "	rjmp	1f\n"
     "	rjmp	do_spm\n"
+#ifdef BIGBOOT
+    "	rjmp	copy_flash_pages\n"
+#endif
     "1:\n"
   );
 }
@@ -1107,3 +1110,38 @@ static void do_spm(uint16_t address, uint8_t command, uint16_t data) {
     }
 #endif
 }
+
+#ifdef BIGBOOT
+
+void do_spm_rampz(uint32_t address, uint8_t command, uint16_t data) {
+  #ifdef RAMPZ
+    RAMPZ = (address >> 16) & 0xff;  // address bits 23-16 goes to RAMPZ
+    do_spm((address & 0xffff), command, data); // do_spm accepts only lower 16 bits of address
+  #else
+    do_spm(address, command, data);  // 16 bit address - no problems to pass directly
+  #endif
+}
+
+void copy_flash_pages(uint32_t dest_page_addr, uint32_t src_page_addr, uint16_t page_count, uint8_t reset_mcu) {
+  int i, j;
+  for (i = 0; i < page_count; i++) {
+    do_spm_rampz(dest_page_addr, __BOOT_PAGE_ERASE, 0);
+    for (j = 0; j < SPM_PAGESIZE; j += 2) {
+  #ifdef RAMPZ
+      do_spm_rampz(dest_page_addr + j, __BOOT_PAGE_FILL, pgm_read_word_far(src_page_addr + j));
+  #else
+      do_spm(dest_page_addr + j, __BOOT_PAGE_FILL, pgm_read_word(src_page_addr + j));
+  #endif
+    }
+    do_spm_rampz(dest_page_addr, __BOOT_PAGE_WRITE, 0);
+    dest_page_addr += SPM_PAGESIZE;
+    src_page_addr += SPM_PAGESIZE;
+  }
+  if (reset_mcu) {
+    watchdogConfig(WATCHDOG_16MS); // for a reset of the MCU
+    while (1);
+  }
+}
+#endif
+
+
