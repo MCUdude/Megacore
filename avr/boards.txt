@@ -619,6 +619,8 @@ menu.bootloader=Bootloader
 640.menu.pinout.mega_pinout.build.variant=100-pin-arduino-mega
 640.menu.pinout.avr_pinout=AVR pinout
 640.menu.pinout.avr_pinout.build.variant=100-pin-avr
+640.menu.pinout.axon_pinout=Axon pinout
+640.menu.pinout.axon_pinout.build.variant=100-pin-avr-axon
 
 # Brown out detection
 640.menu.BOD.2v7=BOD 2.7V
