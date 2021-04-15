@@ -14,9 +14,7 @@ void setup()
 
 void loop() 
 {
-  // Enter idle state for 8 s with the rest of peripherals turned off
-  // Each microcontroller comes with different number of peripherals
-  // Comment off line of code where necessary
+  // After every 5 seconds of operation, the microcontroller is switched to the Power_save mode for 3 seconds.
   
   Serial1.println("Loop...");
   
@@ -24,6 +22,7 @@ void loop()
 	 Serial1.print("---> Start slipping "); 
 	 LowPowerAT90CAN.powerSave(3000); 
 	 Serial1.print("---> WAKE UP !!!! "); 
+	 Timer_5000 = millis();
   }	  
 
 
