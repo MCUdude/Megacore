@@ -9,7 +9,7 @@ class LowPowerAT90CANClass
 		#if defined (__AVR__)
 
 			#if defined (__AVR_AT90CAN32__) || defined(__AVR_AT90CAN64__) || defined(__AVR_AT90CAN128__)
-				void powerSave(unsigned long SLEEP_MS; byte SLEEP_MODE);				
+				void powerSave(unsigned long SLEEP_MS, byte SLEEP_MODE);				
 			#else
 				#error "Please ensure chosen MCU is AT90CAN."
 			#endif
