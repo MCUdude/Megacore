@@ -23,10 +23,14 @@ unsigned long TCounter = 0;
 
 #if defined (__AVR_AT90CAN32__) || defined(__AVR_AT90CAN64__) || defined(__AVR_AT90CAN128__)
 
-void	LowPowerAT90CANClass::powerSave(unsigned long SLEEP_MS)
+void	LowPowerAT90CANClass::powerSave(unsigned long SLEEP_MS, byte SLEEP_MODE)
 {
   if (SLEEP_MS > 15) {	
-    sleepMode(SLEEP_POWER_SAVE);   
+    if (SLEEP_MODE==0) {
+      sleepMode(SLEEP_IDLE);   
+    } else {
+      sleepMode(SLEEP_POWER_SAVE);	    
+    }    
     TCounter = 0;
     TCNT2=0; //счётный регистр обнулён
     TIFR2=TIFR2; // TIFR2&=0xff; //отчистить флаги прерываний
