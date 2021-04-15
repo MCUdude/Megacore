@@ -14,13 +14,13 @@ void setup()
 
 void loop() 
 {
-  // After every 5 seconds of operation, the microcontroller is switched to the Power_save mode for 3 seconds.
+  // After every 5 seconds of operation, the microcontroller is switched to the Power_save (1) or Idle (0) mode for 3 seconds.
   
   Serial1.println("Loop...");
   
   if ((Timer_5000+5000) < millis()) {
-	 Serial1.print("---> Start slipping "); 
-	 LowPowerAT90CAN.powerSave(3000); 
+	 Serial1.print("---> Start sleepping "); 
+	 LowPowerAT90CAN.powerSave(3000,1); 
 	 Serial1.print("---> WAKE UP !!!! "); 
 	 Timer_5000 = millis();
   }	  
