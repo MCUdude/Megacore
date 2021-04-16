@@ -4,7 +4,7 @@
 An Arduino core for ATmega64, ATmega128, ATmega640, ATmega1280, ATmega1281, ATmega2560, ATmega2561, AT90CAN32, AT90CAN64 and AT90CAN128, all running [Optiboot flash](#write-to-own-flash). This core requires at least Arduino IDE v1.6, where v1.8.5+ is recommended. <br/>
 If you're into "pure" AVR programming, I'm happy to tell you that all relevant keywords are being highlighted by the IDE through a separate keywords file. Make sure to check out the [example files](https://github.com/MCUdude/MegaCore/tree/master/avr/libraries/AVR_examples/examples) (File > Examples > AVR C code examples).
 
-Add ligth LowPower library for AT90CAN (Idle and PowerSave modes only)
+Add light LowPower library for AT90CAN (Idle and PowerSave modes only)
 
 
 # Table of contents
